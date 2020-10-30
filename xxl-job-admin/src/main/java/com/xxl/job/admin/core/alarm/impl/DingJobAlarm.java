@@ -37,7 +37,7 @@ public class DingJobAlarm implements JobAlarm {
                 String alarmContent = "Alarm Job LogId : " + jobLog.getId();
                 String msg = jobLog.getTriggerMsg();
                 if (jobLog.getTriggerCode() != ReturnT.SUCCESS_CODE && !StringUtils.isEmpty(msg)) {
-                    msg = msg.substring(msg.lastIndexOf("msg：")+4);
+                    msg = msg.lastIndexOf("msg：")==-1?msg:msg.substring(msg.lastIndexOf("msg：")+4);
                     alarmContent += " , TriggerMsg : " + msg;
                 }
                 if (jobLog.getHandleCode()>0 && jobLog.getHandleCode() != ReturnT.SUCCESS_CODE) {
