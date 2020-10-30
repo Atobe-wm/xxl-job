@@ -61,11 +61,10 @@ public class JobFailMonitorHelper {
 
 								// 2、fail alarm monitor
 								int newAlarmStatus = 0;		// 告警状态：0-默认、-1=锁定状态、1-无需告警、2-告警成功、3-告警失败
-                                //String dingWebhook = XxlJobAdminConfig.getAdminConfig().getDingWebhook();
-                                //boolean flag=info!=null && (!StringUtils.isEmpty(dingWebhook) || (info.getAlarmEmail()!=null && info.getAlarmEmail().trim().length()>0));
-                                //钉钉告警模式与邮箱一致[报警邮箱] 不同点：无需配置邮箱，随意输入，有值即可
-								boolean flag=info!=null && info.getAlarmEmail()!=null && info.getAlarmEmail().trim().length()>0;
-                                if (flag) {
+                                //钉钉告警模式 ：无需配置报警邮箱
+                                String dingWebhook = XxlJobAdminConfig.getAdminConfig().getDingWebhook();
+                                boolean flag=info!=null && (!StringUtils.isEmpty(dingWebhook) || (info.getAlarmEmail()!=null && info.getAlarmEmail().trim().length()>0));
+								if (flag) {
 									boolean alarmResult = XxlJobAdminConfig.getAdminConfig().getJobAlarmer().alarm(info, log);
 									newAlarmStatus = alarmResult?2:3;
 								} else {
