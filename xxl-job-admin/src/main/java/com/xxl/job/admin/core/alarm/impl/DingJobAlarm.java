@@ -57,6 +57,8 @@ public class DingJobAlarm implements JobAlarm {
                 text.setContent(content);
                 request.setText(text);
                 client.execute(request);
+                //如果想要@个人且可配置，则可以选择注释掉邮件报警的方式，只选择钉钉报警
+                //把页面上配置的报警人作为@个人配置
             } catch (Exception e) {
                 logger.error(">>>>>>>>>>> xxl-job, job fail alarm ding send error, JobLogId:{}", jobLog.getId(), e);
                 alarmResult = false;
